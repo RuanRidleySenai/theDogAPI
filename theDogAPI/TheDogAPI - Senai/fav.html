@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Favoritos</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="container">
+    <h2 style="text-align:center; padding: 20px;">🐶 Meus Favoritos</h2>
+    <div id="favoritesContainer"></div>
+  </div>
+
+  <script>
+    const container = document.getElementById('favoritesContainer');
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    if (favorites.length === 0) {
+      container.innerHTML = "<p style='text-align:center;'>Nenhum favorito ainda.</p>";
+    } else {
+      favorites.forEach(fav => {
+        const card = document.createElement('div');
+        card.classList.add('favorite-card');
+
+        card.innerHTML = `
+          <img src="${fav.imageUrl}" alt="${fav.name}" />
+          <p>${fav.name}</p>
+          <i class="fa-solid fa-heart"></i>
+        `;
+
+        const heartIcon = card.querySelector('.fa-heart');
+        heartIcon.addEventListener('click', () => {
+          card.classList.add('fade-out');
+          setTimeout(() => {
+            const index = favorites.findIndex(item => item.imageUrl === fav.imageUrl);
+            if (index !== -1) {
+              favorites.splice(index, 1);
+              localStorage.setItem('favorites', JSON.stringify(favorites));
+              card.remove();
+            }
+          }, 300);
+        });
+
+        container.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>
