@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dog Search App</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="nav-item active">
+        <i class="fa-solid fa-arrows-up-down"></i>
+        <span>Voting</span>
+      </div>
+      <div class="nav-item">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span>Breeds</span>
+      </div>
+      <div class="nav-item">
+        <i class="fa-solid fa-heart"></i>
+        <a href="fav.html" target="_blank"><span>Favs</span></a>
+      </div>
+    </nav>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Buscar raça..." />
+      <button onclick="searchDog()">Buscar</button>
+    </div>
+
+    <div id="dogCard" class="dog-card">
+      <div class="dog-image"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
